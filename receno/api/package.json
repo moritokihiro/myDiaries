@@ -2,7 +2,6 @@
   "name": "app",
   "version": "1.0.0",
   "description": "API RESTful com Node.js, Express, TypeScript, MongoDB e Docker",
-  "type": "module",
   "scripts": {
     "format": "prettier --write 'src/**/*.ts'",
     "lint": "eslint --config eslint.config.js 'src/**/*.ts'",
