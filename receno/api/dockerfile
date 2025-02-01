@@ -1,0 +1,17 @@
+# ベースイメージとしてNode.jsを指定
+FROM node:16
+
+# 作業ディレクトリを作成
+WORKDIR /app
+
+# package.jsonとpackage-lock.jsonをコピー
+COPY package*.json ./
+
+# 依存関係をインストール（開発用依存関係も含める）
+RUN npm install
+
+# ソースコードをコピー
+COPY . .
+
+# 開発中はビルドせず、ts-node-devを使用してファイル変更を監視しつつ実行
+CMD ["npx", "ts-node-dev", "--respawn", "--no-notify", "src/server.ts"]

@@ -1,0 +1,1 @@
+- eslint.jsはtouchコマンドしか認識されない
