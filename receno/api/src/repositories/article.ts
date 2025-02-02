@@ -1,5 +1,7 @@
 import { Db, Collection, SortDirection, ObjectId } from 'mongodb';
 import { client, DATABASE_NAME } from '../config/db';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const collectionName: string =
   process.env.ARTICLE_COLLECTION_NAME || 'articles';

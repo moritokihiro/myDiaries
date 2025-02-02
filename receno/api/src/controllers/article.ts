@@ -8,7 +8,9 @@ import {
 
 export async function postArticle(req: Request, res: Response): Promise<void> {
   try {
+    console.log(req.body);
     const { hashtag, title, description, date, writer } = req.body;
+
     const image = req.file?.path;
 
     // hashtagを配列に変換
@@ -28,12 +30,15 @@ export async function postArticle(req: Request, res: Response): Promise<void> {
       image_url: image,
       visit_count: 0,
     };
-    await createArticle(data); // Insert data into the database
+    await createArticle(data);
     res.status(200).json({ message: 'Data inserted successfully' });
   } catch (error: unknown) {
     res
       .status(500)
-      .json({ message: 'Error inserting data', error: (error as Error).message });
+      .json({
+        message: 'Error inserting data',
+        error: (error as Error).message,
+      });
   }
 }
 

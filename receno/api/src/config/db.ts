@@ -4,7 +4,7 @@ const MONGO_URI =
   process.env.MONGO_URI || `mongodb://username:password@mongo:27017/admin`;
 export const client = new MongoClient(MONGO_URI);
 
-export async function connect(): Promise<void> {
+export async function mongodbConnect(): Promise<void> {
   try {
     const mongoDB = await client.connect();
     if (mongoDB) {
