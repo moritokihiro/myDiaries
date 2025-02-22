@@ -1,10 +1,11 @@
 import { Db, Collection, SortDirection, ObjectId } from 'mongodb';
-import { client, DATABASE_NAME } from '../config/db';
+import { client } from '../config/db';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const collectionName: string =
-  process.env.ARTICLE_COLLECTION_NAME || 'articles';
+  process.env.COLLECTION_NAME || '';
+const DATABASE_NAME = process.env.MONGO_DATABASE_NAME || 'myDatabase';
 const db: Db = client.db(DATABASE_NAME);
 const collection: Collection = db.collection(collectionName);
 

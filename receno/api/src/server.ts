@@ -1,22 +1,28 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
 import router from './routes/user/routes';
 import { mongodbConnect, gracefulShutdown } from './config/db';
 
 // dotenvを初期化して環境変数をロード
+import dotenv from 'dotenv';
 dotenv.config();
 
 // Expressアプリケーションの初期化
 const server = express();
 server.use(cors());
+server.use(express.json()); //routerより先におかないとreq.bodyを解析できない。
 server.use('/', router);
-server.use(express.json());
 server.options('/article/post', cors());
 server.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
-const EXPRESS_PORT = process.env.EXPRESS_PORT || 3002;
+server.use(cors({
+  origin: 'http://localhost:3000', 
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+const EXPRESS_PORT = process.env.EXPRESS_PORT || 4000;
 
 // MongoDB接続とサーバー起動を統合
 async function main() {

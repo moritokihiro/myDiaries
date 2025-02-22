@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
-export const DATABASE_NAME = process.env.DATABASE_NAME || 'myDatabase';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const MONGO_URI =
-  process.env.MONGO_URI || `mongodb://username:password@mongo:27017/admin`;
+  process.env.MONGO_URI || '';
 export const client = new MongoClient(MONGO_URI);
 
 export async function mongodbConnect(): Promise<void> {
